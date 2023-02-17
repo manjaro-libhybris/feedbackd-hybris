@@ -1,10 +1,11 @@
+# Maintainer: Bardia Moshiri <fakeshell@bardia.tech>
 # Maintainer: Philip Goto <philip.goto@gmail.com>
 # Maintainer Erik Inkinen <erik.inkinen@gmail.com>
 # Contributor: Sam Whited <sam@samwhited.com>
 
 pkgname=feedbackd-hybris
-_pkgname=feedbackd-bookworm
-pkgver=0.0.0+git20220208
+_pkgname=feedbackd
+pkgver='0.0.2+git20221215'
 pkgrel=1
 pkgdesc='A daemon to provide haptic feedback on events'
 arch=(x86_64 aarch64)
@@ -23,8 +24,15 @@ makedepends=(
         meson
         vala
 )
-source=("${url}/archive/refs/heads/bookworm.tar.gz")
-b2sums=('28e26aa447876119e95a643b43577570e86d8f4e629e46a49a1a3e5cb1bb68d773d9dcc2ff50c36733f66b535cedb61068181d52c1410daf3061b92ea7788ab9')
+
+source=("git+https://github.com/droidian/feedbackd.git")
+sha256sums=('SKIP')
+
+prepare() {
+  cd ${srcdir}/${_pkgname}
+  git checkout -b bookworm
+  git checkout 472e5d680c0e4d3b3b3b90a3270326f7450b4bc7
+}
 
 build() {
         cd ${srcdir}/${_pkgname}

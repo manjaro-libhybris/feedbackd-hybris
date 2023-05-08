@@ -5,7 +5,7 @@
 
 pkgname=feedbackd-hybris
 _pkgname=feedbackd
-pkgver='0.0.2+git20221215'
+pkgver='0.2.0+git20230508'
 pkgrel=1
 pkgdesc='A daemon to provide haptic feedback on events'
 arch=(x86_64 aarch64)
@@ -13,17 +13,8 @@ url='https://github.com/droidian/feedbackd'
 license=(GPL3)
 provides=(feedbackd)
 conflict=(feedbackd)
-depends=(
-        dconf
-        gsound
-        json-glib
-        libgudev
-)
-makedepends=(
-        gobject-introspection
-        meson
-        vala
-)
+depends=('dconf' 'gsound' 'json-glib' 'libgudev')
+makedepends=('gobject-introspection' 'meson' 'vala' 'gi-docgen' 'python-docutils')
 
 source=("git+https://github.com/droidian/feedbackd.git")
 sha256sums=('SKIP')
@@ -31,7 +22,7 @@ sha256sums=('SKIP')
 prepare() {
   cd ${srcdir}/${_pkgname}
   git checkout -b bookworm
-  git checkout 472e5d680c0e4d3b3b3b90a3270326f7450b4bc7
+  git checkout 76ab8710ce2d066254f5fdb9142dd43894fb0a58
 }
 
 build() {
